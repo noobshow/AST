@@ -10,7 +10,7 @@ This would make the creation of a compile-to-C language quite a bit easier, as t
 
 - [x] Represent unary and binary operators
 
-- [ ] Respect precedence set by the tree
+- [x] Respect precedence set by the tree
 
 - [ ] Represent function calls
 

@@ -29,18 +29,22 @@ char* eval(node *top) {
 		if(top->len == 1) {
 			char *parameter = eval(top->children[0]);
 			int length = strlen(top->data) + strlen(parameter);
-			result = string(length);
+			result = string(length + 2);
+			strcat(result, "(");
 			strcat(result, top->data);
 			strcat(result, parameter);
+			strcat(result, ")");
 		} else {
 			char *param1, *param2;
 			param1 = eval(top->children[0]);
 			param2 = eval(top->children[1]);
 			int length = strlen(top->data) + strlen(param1) + strlen(param2);
-			result = string(length);
+			result = string(length + 2);
+			strcat(result, "(");
 			strcat(result, param1);
 			strcat(result, top->data);
 			strcat(result, param2);
+			strcat(result, ")");
 		}
 		break;
 	case TOKEN:
