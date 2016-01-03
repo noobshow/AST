@@ -14,7 +14,7 @@ This would make the creation of a compile-to-C language quite a bit easier, as t
 
 - [x] Represent function calls
 
-- [ ] Represent casts
+- [x] Represent casts
 
 - [ ] Represent basic conditionals (if, while, do/while)
 

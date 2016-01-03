@@ -71,6 +71,16 @@ char* eval(node *top) {
 		}
 		strcat(result, ")");
 		break;
+	case CAST:
+		length = strlen(top->data) + 2;
+		char *param = eval(top->children[0]);
+		length += strlen(param);
+		result = string(length);
+		strcat(result, "(");
+		strcat(result, top->data);
+		strcat(result, ")");
+		strcat(result, param);
+		break;
 	default:
 		result = "";
 		break;
