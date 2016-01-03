@@ -23,21 +23,28 @@ void delete(node *top) {
 	}
 }
 char* eval(node *top) {
-	char* result;
+	char *result;
 	switch(top->type) {
 	case OPERATOR:
 		if(top->len == 1) {
-			int length = strlen(top->data) + strlen(top->children[0]->data);
+			char *parameter = eval(top->children[0]);
+			int length = strlen(top->data) + strlen(parameter);
 			result = string(length);
 			strcat(result, top->data);
-			strcat(result, top->children[0]->data);
+			strcat(result, parameter);
 		} else {
-			int length = strlen(top->data) + strlen(top->children[0]->data) + strlen(top->children[1]->data);
+			char *param1, *param2;
+			param1 = eval(top->children[0]);
+			param2 = eval(top->children[1]);
+			int length = strlen(top->data) + strlen(param1) + strlen(param2);
 			result = string(length);
-			strcat(result, top->children[0]->data);
+			strcat(result, param1);
 			strcat(result, top->data);
-			strcat(result, top->children[1]->data);
+			strcat(result, param2);
 		}
+		break;
+	case TOKEN:
+		result = top->data;
 		break;
 	default:
 		result = "";
