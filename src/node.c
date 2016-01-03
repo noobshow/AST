@@ -89,6 +89,7 @@ char* eval(node *top) {
 		strcat(result, top->data);
 		strcat(result, "=");
 		strcat(result, value);
+		break;
 	default:
 		result = "";
 		break;
