@@ -31,6 +31,12 @@ char* eval(node *top) {
 			result = string(length);
 			strcat(result, top->data);
 			strcat(result, top->children[0]->data);
+		} else {
+			int length = strlen(top->data) + strlen(top->children[0]->data) + strlen(top->children[1]->data);
+			result = string(length);
+			strcat(result, top->children[0]->data);
+			strcat(result, top->data);
+			strcat(result, top->children[1]->data);
 		}
 		break;
 	default:
