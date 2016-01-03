@@ -1,6 +1,8 @@
 #include "node.h"
-#include "stdlib.h"
+#include <stdlib.h>
 #include "mem.h"
+#include <string.h>
+#include <stdio.h>
 
 node* newNode(char* data, node_type type, int children) {
 	node *current = new(current);
@@ -21,5 +23,19 @@ void delete(node *top) {
 	}
 }
 char* eval(node *top) {
-
+	char* result;
+	switch(top->type) {
+	case OPERATOR:
+		if(top->len == 1) {
+			int length = strlen(top->data) + strlen(top->children[0]->data);
+			result = string(length);
+			strcat(result, top->data);
+			strcat(result, top->children[0]->data);
+		}
+		break;
+	default:
+		result = "";
+		break;
+	}
+	return result;
 }
