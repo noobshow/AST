@@ -37,3 +37,5 @@ This would make the creation of a compile-to-C language quite a bit easier, as t
 - [ ] Optimization of the code
 
 - [ ] Syntax and semantics checking while in the tree form
+
+- [ ] Automatically detect correct stdlib headers for symbols in the tree
