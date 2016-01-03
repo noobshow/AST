@@ -1,4 +1,4 @@
-CFLAGS := -std=c11 -Wall -Wextra -Wpedantic
+CFLAGS := -std=c11 -Werror -Wall -Wextra -Wpedantic
 CC := gcc
 
 run: bin/main
