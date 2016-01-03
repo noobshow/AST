@@ -12,7 +12,7 @@ This would make the creation of a compile-to-C language quite a bit easier, as t
 
 - [x] Respect precedence set by the tree
 
-- [ ] Represent function calls
+- [x] Represent function calls
 
 - [ ] Represent casts
 

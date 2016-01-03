@@ -24,11 +24,12 @@ void delete(node *top) {
 }
 char* eval(node *top) {
 	char *result;
+	int length = 0;
 	switch(top->type) {
 	case OPERATOR:
 		if(top->len == 1) {
 			char *parameter = eval(top->children[0]);
-			int length = strlen(top->data) + strlen(parameter);
+			length = strlen(top->data) + strlen(parameter);
 			result = string(length + 2);
 			strcat(result, "(");
 			strcat(result, top->data);
@@ -38,7 +39,7 @@ char* eval(node *top) {
 			char *param1, *param2;
 			param1 = eval(top->children[0]);
 			param2 = eval(top->children[1]);
-			int length = strlen(top->data) + strlen(param1) + strlen(param2);
+			length = strlen(top->data) + strlen(param1) + strlen(param2);
 			result = string(length + 2);
 			strcat(result, "(");
 			strcat(result, param1);
@@ -49,6 +50,26 @@ char* eval(node *top) {
 		break;
 	case TOKEN:
 		result = top->data;
+		break;
+	case CALL:
+		//Minimum function name and parens
+		length = strlen(top->data) + 2;
+		char **params = array(params, top->len);
+		for(int i = 0; i < top->len; i++) {
+			params[i] = eval(top->children[i]);
+			length += strlen(params[i]);
+			if(i + 1 < top->len)
+				 length++; //Comma per argument, except for the last argument
+		}
+		result = string(length);
+		strcat(result, top->data);
+		strcat(result, "(");
+		for(int i = 0; i < top->len; i++) {
+			strcat(result, params[i]);
+			if(i + 1 < top->len)
+				strcat(result, ",");
+		}
+		strcat(result, ")");
 		break;
 	default:
 		result = "";
