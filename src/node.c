@@ -81,6 +81,14 @@ char* eval(node *top) {
 		strcat(result, ")");
 		strcat(result, param);
 		break;
+	case ASSIGN:
+		length = strlen(top->data) + 1; //Assignment target and the equals sign
+		char *value = eval(top->children[0]);
+		length += strlen(value);
+		result = string(length);
+		strcat(result, top->data);
+		strcat(result, "=");
+		strcat(result, value);
 	default:
 		result = "";
 		break;
