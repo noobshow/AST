@@ -72,7 +72,7 @@ char* eval(node *top) {
 		strcat(result, ")");
 		break;
 	case CAST:
-		length = strlen(top->data) + 2;
+		length = strlen(top->data) + 2; //type and paranthesis
 		char *param = eval(top->children[0]);
 		length += strlen(param);
 		result = string(length);
